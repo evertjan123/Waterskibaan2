@@ -44,14 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="IMoves.cs" />
+    <Compile Include="InstructieGroep.cs" />
+    <Compile Include="IWachterij.cs" />
     <Compile Include="Kabel.cs" />
     <Compile Include="Lijn.cs" />
     <Compile Include="LijnenVoorraad.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="MoveCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skies.cs" />
     <Compile Include="Sporter.cs" />
+    <Compile Include="Wachtrij.cs" />
+    <Compile Include="WachtrijIntstructie.cs" />
+    <Compile Include="WachtrijStarten.cs" />
+    <Compile Include="Waterskibaan.cs" />
     <Compile Include="Zwemvest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace Waterskibaan
         }
         public Lijn VerwijderEersteLijn()
         {
-            if(_lijnen.Count() < 1)
+            if(_lijnen.Count() > 1)
             {
                 _lijnen.Dequeue();              
             } else
@@ -32,7 +32,6 @@ namespace Waterskibaan
         public String toString()
         {
             String text = $"{GetAantalLijnen()} lijnen op voorraad";
-            Console.WriteLine(text);
             return text;
         }
     }

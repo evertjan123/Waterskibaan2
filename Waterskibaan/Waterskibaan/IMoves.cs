@@ -8,6 +8,10 @@ namespace Waterskibaan
 {
     interface IMoves
     {
-        int Move();
+        int moves();
+        int Jump();
+        int Omdraaien();
+        int OpEenBeen();
+        int MetEenHand();
     }
 }
