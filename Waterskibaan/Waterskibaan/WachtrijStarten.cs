@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class WachtrijStarten : Wachtrij, IWachterij
+    class WachtrijStarten : Wachtrij, Iwachtrij
     {
-        public int MAX_LENGTE_RIJ { get; set; } = 100;
+        public override int MAX_LENGTE_RIJ { get { return 100; } }
+
 
         public String toString(){
             String text = $"In de start wachtrij wachten {base.toString()}";

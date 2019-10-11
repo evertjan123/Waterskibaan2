@@ -21,10 +21,16 @@ namespace Waterskibaan
         {
             if (sp.Zwemvest != null && sp.Skies != null)
             {
-                Lijn l = new Lijn();
-                K.NeemLijnInGebruik(l);
-                l.AddSporter(sp);
-            } else
+                if (K.IsStartPositieLeeg() == true)
+                {
+                    Lijn l = new Lijn();
+
+                    K.NeemLijnInGebruik(l);
+                    l.AddSporter(sp);
+                    lv.VerwijderEersteLijn();
+                }
+            }
+            else
             {
                 throw new Exception("geen zwemvest of skies");
             }
@@ -32,19 +38,23 @@ namespace Waterskibaan
         }
         public void VerplaatsKabel()
         {
-            Boolean isLeeg = false;
-            if (K.IsStartPositieLeeg())
+            if (K.IsStartPositieLeeg() == false)
             {
-                isLeeg = true; 
+                if (K.VerwijderLijnVanKabel() == null)
+                {
+                }
+                else
+                {
+                    lv.LijnToevoegenAanRij(new Lijn());
+                }
+                K.verschuifLijnen();
             }
-                K.VerwijderLijnVanKabel();
-            K.verschuifLijnen();
-            if (isLeeg == false)
-            {
-                lv.VerwijderEersteLijn();
-            }
-            
-
+                
+        }
+        
+        public Kabel ReturnKabel()
+        {
+            return K;
         }
 
         public String toString()

@@ -9,21 +9,94 @@ namespace Waterskibaan
 {
     class Game
     {
-        Waterskibaan w = new Waterskibaan();
+        private Waterskibaan w = new Waterskibaan();
+
+        private Wachtrijintstructie wachtrijintstructie = new Wachtrijintstructie();
+        private WachtrijStarten WachtrijStarten = new WachtrijStarten();
+        private InstructieGroep instructieGroep = new InstructieGroep();
+
+        public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
+        public event NieuweBezoekerHandler NieuweBezoeker;
+        public delegate void NaarInstructieHandler();
+        public event NaarInstructieHandler NieuweInstructie;
+        public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
+        public event InstructieAfgelopenHandler InstructieAfgelopen;
+        public delegate void VerplaatsLijnenHandler();
+        public event VerplaatsLijnenHandler LijnenVerplaatst;
+
+
+
         public void Initialize()
         {
-            for (int i = 0; i < 15; i++)
+            NieuweBezoeker += onNieuweBezoeker;
+            NieuweInstructie += bezoekerNaarInstructie;
+            InstructieAfgelopen += instructieNaarWachtrij;
+            LijnenVerplaatst += verplaatsLijnen;
+            for (int i = 0; i < 120; i++)
             {
-                w.SporterStart(new Sporter());
-                w.toString();
-                w.VerplaatsKabel();
-                Console.WriteLine("Kabel verplaatst");
-                w.toString();
-                Console.WriteLine("------------------------------------");
-                Thread.Sleep(1000);
+                if(w.ReturnKabel().IsStartPositieLeeg() == true)
+                {
+                    if (WachtrijStarten.ReturnWachtrij().Count != 0)
+                    {
+                        Sporter sporter = WachtrijStarten.SportersVerlatenRij(1).ElementAt(0);
+                        w.SporterStart(sporter);
+                    }                       
+                }
+                if (i % 4 == 0)
+                {
+                    Console.WriteLine("Kabel verplaatst");
+                    LijnenVerplaatst.Invoke();
+                }
+                if (i % 3 == 0)
+                {
+                    NieuweBezoeker.Invoke(new NieuweBezoekerArgs(new Sporter()));
+                }
+                if (i % 5 == 0)
+                {
+                    NieuweInstructie.Invoke();
+                }
+                if (i % 20 == 0)
+                {
+                    InstructieAfgelopen.Invoke(new InstructieAfgelopenArgs(new List<Sporter>()));
+                }
 
+                Console.WriteLine($"{i}-------------------------------------------");
+                w.toString();
+                wachtrijintstructie.toString();
+                instructieGroep.toString();
+                WachtrijStarten.toString();
+                Thread.Sleep(1000);
             }
 
         }
+        private void onNieuweBezoeker(NieuweBezoekerArgs e)
+        {
+            wachtrijintstructie.SporterNeemPlaatsInRij(e.Sporter);
+        }
+
+        private void bezoekerNaarInstructie()
+        {
+            List<Sporter> sporters = new List<Sporter>();
+            sporters = wachtrijintstructie.SportersVerlatenRij(5);
+            foreach (Sporter sporter in sporters)
+            {
+                instructieGroep.SporterNeemPlaatsInRij(sporter);
+            }
+
+        }
+        private void instructieNaarWachtrij(InstructieAfgelopenArgs e)
+        {
+            List<Sporter> sporters = new List<Sporter>();
+            sporters = instructieGroep.SportersVerlatenRij(5);
+            foreach (Sporter sporter in sporters)
+            {
+                WachtrijStarten.SporterNeemPlaatsInRij(sporter);
+            }
+        }
+        private void verplaatsLijnen()
+        {
+            w.VerplaatsKabel();
+        }
+
     }
 }

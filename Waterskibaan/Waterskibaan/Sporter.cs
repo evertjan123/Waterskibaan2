@@ -15,6 +15,7 @@ namespace Waterskibaan
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }       
         public List<IMoves> Moves { get; set; }
+        public Move HuidigeMove { get; set; }
         public int BehaaldePunten { get; set; }
         public Sporter()
         {

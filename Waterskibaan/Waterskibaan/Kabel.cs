@@ -28,7 +28,7 @@ namespace Waterskibaan
             {
                 _lijnen.AddFirst(lijn);
                 lijn.PositieOpDeKabel = 0;
-            }
+            } 
         }
         public void verschuifLijnen()
         {

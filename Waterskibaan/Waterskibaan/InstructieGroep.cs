@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class InstructieGroep : Wachtrij, IWachterij
+    class InstructieGroep : Wachtrij, Iwachtrij
     {
-        public int MAX_LENGTE_RIJ { get; set; } = 5;
+        public override int MAX_LENGTE_RIJ { get { return 5; } }
 
-        public String toString()
+
+        public string toString()
         {
             String text = $"In de instructiegroep wachten {base.toString()}";
             Console.WriteLine(text);
