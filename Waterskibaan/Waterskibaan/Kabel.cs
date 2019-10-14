@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Kabel
+    public class Kabel
     {
-        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
+        public LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
         public LinkedListNode<Lijn> First { get; }
         public bool IsStartPositieLeeg()
         {

@@ -7,13 +7,13 @@ using System.Threading;
 
 namespace Waterskibaan
 {
-    class Game
+    public class Game
     {
-        private Waterskibaan w = new Waterskibaan();
+        public Waterskibaan w = new Waterskibaan();
 
-        private Wachtrijintstructie wachtrijintstructie = new Wachtrijintstructie();
-        private WachtrijStarten WachtrijStarten = new WachtrijStarten();
-        private InstructieGroep instructieGroep = new InstructieGroep();
+        public Wachtrijintstructie wachtrijintstructie = new Wachtrijintstructie();
+        public WachtrijStarten WachtrijStarten = new WachtrijStarten();
+        public InstructieGroep instructieGroep = new InstructieGroep();
 
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public event NieuweBezoekerHandler NieuweBezoeker;
@@ -32,7 +32,7 @@ namespace Waterskibaan
             NieuweInstructie += bezoekerNaarInstructie;
             InstructieAfgelopen += instructieNaarWachtrij;
             LijnenVerplaatst += verplaatsLijnen;
-            for (int i = 0; i < 120; i++)
+    /*        for (int i = 0; i < 120; i++)
             {
                 if(w.ReturnKabel().IsStartPositieLeeg() == true)
                 {
@@ -68,13 +68,14 @@ namespace Waterskibaan
                 Thread.Sleep(1000);
             }
 
-        }
-        private void onNieuweBezoeker(NieuweBezoekerArgs e)
+      */  }
+
+        public void onNieuweBezoeker(NieuweBezoekerArgs e)
         {
             wachtrijintstructie.SporterNeemPlaatsInRij(e.Sporter);
         }
 
-        private void bezoekerNaarInstructie()
+        public void bezoekerNaarInstructie()
         {
             List<Sporter> sporters = new List<Sporter>();
             sporters = wachtrijintstructie.SportersVerlatenRij(5);
@@ -84,7 +85,7 @@ namespace Waterskibaan
             }
 
         }
-        private void instructieNaarWachtrij(InstructieAfgelopenArgs e)
+        public void instructieNaarWachtrij(InstructieAfgelopenArgs e)
         {
             List<Sporter> sporters = new List<Sporter>();
             sporters = instructieGroep.SportersVerlatenRij(5);
@@ -93,7 +94,7 @@ namespace Waterskibaan
                 WachtrijStarten.SporterNeemPlaatsInRij(sporter);
             }
         }
-        private void verplaatsLijnen()
+        public void verplaatsLijnen()
         {
             w.VerplaatsKabel();
         }

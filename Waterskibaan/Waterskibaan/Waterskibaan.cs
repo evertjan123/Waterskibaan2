@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
         private LijnenVoorraad lv = new LijnenVoorraad();
         private Kabel K = new Kabel();

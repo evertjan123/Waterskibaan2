@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_waterskibaan"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Waterskibaan" Height="700" Width="1500">
+    <Grid Margin="0,0,-0.4,0">
+        <Canvas x:Name="MainGame" HorizontalAlignment="Left" Height="253" Margin="339,44,0,0" VerticalAlignment="Top" Width="660" ContextMenuClosing="StopSpel"/>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="65,44,0,0" VerticalAlignment="Top" Width="75" Click="StartSpel"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="65,76,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="LwachtrijInstructiegroep" Content="Waxchtrij instructiegroep" HorizontalAlignment="Left" Margin="455,439,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Linstructiegroep" Content="Instructiegroep" HorizontalAlignment="Left" Margin="680,439,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LwachtrijStarten" Content="Wachtrij starten" HorizontalAlignment="Left" Margin="877,439,0,0" VerticalAlignment="Top"/>
+        <Canvas x:Name="WachtrijInstructiegroep" HorizontalAlignment="Left" Height="100" Margin="455,487,0,0" VerticalAlignment="Top" Width="100"/>
+        <Canvas x:Name="Instructiegroep" HorizontalAlignment="Left" Height="100" Margin="680,518,0,0" VerticalAlignment="Top" Width="100"/>
+
     </Grid>
 </Window>

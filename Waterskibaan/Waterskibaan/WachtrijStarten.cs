@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class WachtrijStarten : Wachtrij, Iwachtrij
+    public class WachtrijStarten : Wachtrij, Iwachtrij
     {
         public override int MAX_LENGTE_RIJ { get { return 100; } }
 
