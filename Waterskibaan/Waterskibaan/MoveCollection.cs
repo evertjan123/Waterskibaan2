@@ -8,17 +8,23 @@ namespace Waterskibaan
 {
     public static class MoveCollection
     {
+
         public static List<IMoves> GetWillekeurigeMoves()
         {
             List<IMoves> moves = new List<IMoves>();
+            moves.Add(new Move());
+            moves.Add(new Move());
+            moves.Add(new Move());
+            moves.Add(new Move());
+            List<IMoves> gekozenMoves = new List<IMoves>();
             Random rand = new Random();
 
-            for (int i = 0; i < rand.Next(4); i++)
+            for (int i = 0; i < rand.Next(1,3); i++)
             {
-                moves.Add(new Move());
+                gekozenMoves.Add(moves.ElementAt(rand.Next(0,3)));
             }
 
-            return moves;
+            return gekozenMoves;
         }
     }
 }

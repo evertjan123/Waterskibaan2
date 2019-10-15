@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Waterskibaan" Height="700" Width="1500">
     <Grid Margin="0,0,-0.4,0">
-        <Canvas x:Name="MainGame" HorizontalAlignment="Left" Height="253" Margin="339,44,0,0" VerticalAlignment="Top" Width="660" Background="#FF0028FF"/>
+        <Canvas x:Name="MainGame" HorizontalAlignment="Left" Height="253" Margin="339,44,0,0" VerticalAlignment="Top" Width="631" Background="#FF0028FF"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="65,44,0,0" VerticalAlignment="Top" Width="75" Click="StartSpel"/>
-        <Label x:Name="LwachtrijInstructiegroep" Content="Waxchtrij instructiegroep" HorizontalAlignment="Left" Margin="455,439,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LwachtrijInstructiegroep" Content="Wachtrij instructiegroep" HorizontalAlignment="Left" Margin="455,439,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Linstructiegroep" Content="Instructiegroep" HorizontalAlignment="Left" Margin="680,439,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LwachtrijStarten" Content="Wachtrij starten" HorizontalAlignment="Left" Margin="877,439,0,0" VerticalAlignment="Top"/>
         <Label Content="Lijn voorraad" HorizontalAlignment="Left" Margin="78,465,0,0" VerticalAlignment="Top"/>
@@ -17,6 +17,18 @@
         <Canvas x:Name="CwachtrijInstructiegroep" HorizontalAlignment="Left" Height="100" Margin="483,470,0,0" VerticalAlignment="Top" Width="100"/>
         <Canvas x:Name="Cinstructiegroep" HorizontalAlignment="Left" Height="100" Margin="680,470,0,0" VerticalAlignment="Top" Width="100"/>
         <Canvas x:Name="CwachtrijStarten" HorizontalAlignment="Left" Height="100" Margin="877,470,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="totaal aantal bezoekers" HorizontalAlignment="Left" Margin="41,160,0,0" VerticalAlignment="Top" Width="143"/>
+        <Label Content="Hoogste score" HorizontalAlignment="Left" Margin="94,191,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Aantal bezoekers rode kleren" HorizontalAlignment="Left" Margin="27,222,0,0" VerticalAlignment="Top"/>
+        <Label Content="Totaal aantal rondjes" HorizontalAlignment="Left" Margin="41,253,0,0" VerticalAlignment="Top" Width="138"/>
+        <Label Content="Lijst unieke moves" HorizontalAlignment="Left" Margin="977,63,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="977,94,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Top 10 lichtste kleren" HorizontalAlignment="Left" Margin="977,222,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LtotaalAantalBezoekers" Content="0" HorizontalAlignment="Left" Margin="207,160,0,0" VerticalAlignment="Top" Width="28"/>
+        <Label x:Name="LtotaalAantalRondjes" Content="0" HorizontalAlignment="Left" Margin="207,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.425,-0.895" Width="28"/>
+        <Label x:Name="LhoogsteScore" Content="0" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.671,1.012"/>
+        <Label x:Name="LaantalRodeKleuren" Content="0" HorizontalAlignment="Left" Margin="207,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.225,-0.348" Width="28"/>
+        <Canvas x:Name="ClichtsteKleuren" HorizontalAlignment="Left" Height="100" Margin="977,253,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

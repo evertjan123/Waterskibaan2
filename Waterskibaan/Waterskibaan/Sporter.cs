@@ -21,6 +21,7 @@ namespace Waterskibaan
         {
             Moves = MoveCollection.GetWillekeurigeMoves();
             AantalRondenNogTeGaan = rand.Next(2);
+            BehaaldePunten = 0;
             KledingKleur = Color.White;
             Zwemvest = new Zwemvest();
             Skies = new Skies();

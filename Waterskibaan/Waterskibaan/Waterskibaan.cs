@@ -8,6 +8,7 @@ namespace Waterskibaan
 {
     public class Waterskibaan
     {
+        Random rand = new Random();
         public LijnenVoorraad lv = new LijnenVoorraad();
         public Kabel K = new Kabel();
         public Waterskibaan()
@@ -38,6 +39,20 @@ namespace Waterskibaan
         }
         public void VerplaatsKabel()
         {
+
+            foreach (Lijn lijn in K._lijnen) 
+            {
+                int kansMove = rand.Next(3);
+                if (kansMove == 0)
+                {
+                    int move = rand.Next(0, lijn.Sporter.Moves.Count);
+                    lijn.Sporter.HuidigeMove = (Move)lijn.Sporter.Moves.ElementAt(rand.Next(0,lijn.Sporter.Moves.Count));
+                    lijn.Sporter.BehaaldePunten += lijn.Sporter.HuidigeMove.moves();
+                } else
+                {
+                    lijn.Sporter.HuidigeMove = null; 
+                }
+            }
             K.verschuifLijnen();
             Lijn verwijderdeLijn = K.VerwijderLijnVanKabel();
             if (verwijderdeLijn != null)

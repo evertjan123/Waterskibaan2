@@ -11,6 +11,8 @@ namespace Waterskibaan
     {
         public Waterskibaan w = new Waterskibaan();
         public Kabel kabel;
+        public Logger logger;
+
         private int counter;
         public Wachtrijintstructie wachtrijintstructie = new Wachtrijintstructie();
         public WachtrijStarten WachtrijStarten = new WachtrijStarten();
@@ -36,6 +38,8 @@ namespace Waterskibaan
             LijnenVerplaatst += verplaatsLijnen;
             counter = 1;
             kabel = w.ReturnKabel();
+            logger = new Logger(kabel);
+
         }
 
         public void rondeSpel()
@@ -48,15 +52,15 @@ namespace Waterskibaan
                     w.SporterStart(sporter);
                 }
             }
-            if (counter % 4 == 0)
+            if (counter % 3 == 0)
             {
                 LijnenVerplaatst.Invoke();
             }
-            if (counter % 2 == 0)
+            if (counter % 4 == 0)
             {
                 NieuweBezoeker.Invoke(new NieuweBezoekerArgs(new Sporter()));
             }
-            if (counter % 13 == 0)
+            if (counter % 10 == 0)
             {
                 NieuweInstructie.Invoke();
             }
@@ -72,12 +76,16 @@ namespace Waterskibaan
         public void onNieuweBezoeker(NieuweBezoekerArgs e)
         {
             wachtrijintstructie.SporterNeemPlaatsInRij(e.Sporter);
+            logger.sporterLog.Add(e.Sporter);
         }
 
         public void bezoekerNaarInstructie()
         {
             List<Sporter> sporters = new List<Sporter>();
-            sporters = wachtrijintstructie.SportersVerlatenRij(5);
+            if(instructieGroep.ReturnWachtrij().Count() == 0)
+            {
+                sporters = wachtrijintstructie.SportersVerlatenRij(5);
+            }   
             foreach (Sporter sporter in sporters)
             {
                 instructieGroep.SporterNeemPlaatsInRij(sporter);

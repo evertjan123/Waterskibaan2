@@ -37,10 +37,11 @@ namespace Waterskibaan
             //Wachtrijintstructie w = new Wachtrijintstructie();
             //w.toString();
             //opdracht 11
+            Random rand = new Random();
             Sporter s = new Sporter();
-            Console.WriteLine(s.AantalRondenNogTeGaan);
-            Game g = new Game();
-            g.Initialize();
+            s.HuidigeMove = (Move)s.Moves.ElementAt(0);
+            s.HuidigeMove.moves();
+            Console.WriteLine(s.HuidigeMove.Naam);
         }
             
     }

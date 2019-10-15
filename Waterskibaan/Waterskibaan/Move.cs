@@ -8,6 +8,7 @@ namespace Waterskibaan
 {
     public class Move : IMoves
     {
+        public string Naam { get; set; }
         Random random = new Random();
         int randomInt;
         public int moves()
@@ -32,6 +33,7 @@ namespace Waterskibaan
         }
         public int Jump()
         {
+            Naam = "Jump";
             if (voerUit() == 1)
             {
                 return 200;
@@ -42,6 +44,7 @@ namespace Waterskibaan
         }
         public int MetEenHand()
         {
+            Naam = "Met een hand";
             if(voerUit() == 1)
             {
                 return 120;
@@ -52,6 +55,7 @@ namespace Waterskibaan
         }
         public int Omdraaien()
         {
+            Naam = "Omdraaien";
             if(voerUit() == 1)
             {
                 return 250;
@@ -62,6 +66,7 @@ namespace Waterskibaan
         }
         public int OpEenBeen()
         {
+            Naam = "Op een been";
             if(voerUit() == 1)
             {
                 return 275;
