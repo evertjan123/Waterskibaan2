@@ -7,14 +7,16 @@
         mc:Ignorable="d"
         Title="Waterskibaan" Height="700" Width="1500">
     <Grid Margin="0,0,-0.4,0">
-        <Canvas x:Name="MainGame" HorizontalAlignment="Left" Height="253" Margin="339,44,0,0" VerticalAlignment="Top" Width="660" ContextMenuClosing="StopSpel"/>
+        <Canvas x:Name="MainGame" HorizontalAlignment="Left" Height="253" Margin="339,44,0,0" VerticalAlignment="Top" Width="660" Background="#FF0028FF"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="65,44,0,0" VerticalAlignment="Top" Width="75" Click="StartSpel"/>
-        <Button Content="Stop" HorizontalAlignment="Left" Margin="65,76,0,0" VerticalAlignment="Top" Width="75"/>
         <Label x:Name="LwachtrijInstructiegroep" Content="Waxchtrij instructiegroep" HorizontalAlignment="Left" Margin="455,439,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Linstructiegroep" Content="Instructiegroep" HorizontalAlignment="Left" Margin="680,439,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LwachtrijStarten" Content="Wachtrij starten" HorizontalAlignment="Left" Margin="877,439,0,0" VerticalAlignment="Top"/>
-        <Canvas x:Name="WachtrijInstructiegroep" HorizontalAlignment="Left" Height="100" Margin="455,487,0,0" VerticalAlignment="Top" Width="100"/>
-        <Canvas x:Name="Instructiegroep" HorizontalAlignment="Left" Height="100" Margin="680,518,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Lijn voorraad" HorizontalAlignment="Left" Margin="78,465,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LvoorraadLijnen" Content="15" HorizontalAlignment="Left" Margin="186,465,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.289,0.012"/>
+        <Canvas x:Name="CwachtrijInstructiegroep" HorizontalAlignment="Left" Height="100" Margin="483,470,0,0" VerticalAlignment="Top" Width="100"/>
+        <Canvas x:Name="Cinstructiegroep" HorizontalAlignment="Left" Height="100" Margin="680,470,0,0" VerticalAlignment="Top" Width="100"/>
+        <Canvas x:Name="CwachtrijStarten" HorizontalAlignment="Left" Height="100" Margin="877,470,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

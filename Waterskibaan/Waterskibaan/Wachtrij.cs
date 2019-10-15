@@ -33,8 +33,7 @@ namespace Waterskibaan
             {
                 try
                 {
-                    sportList.Add(_wachtrij.ElementAt(i));
-                    _wachtrij.Dequeue();
+                    sportList.Add(_wachtrij.Dequeue());
                 } catch
                 {
                     Console.WriteLine("Wachtrij leeg");

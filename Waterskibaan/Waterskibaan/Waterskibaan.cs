@@ -8,8 +8,8 @@ namespace Waterskibaan
 {
     public class Waterskibaan
     {
-        private LijnenVoorraad lv = new LijnenVoorraad();
-        private Kabel K = new Kabel();
+        public LijnenVoorraad lv = new LijnenVoorraad();
+        public Kabel K = new Kabel();
         public Waterskibaan()
         {
             for (int i = 0; i < 15; i++)
@@ -38,20 +38,17 @@ namespace Waterskibaan
         }
         public void VerplaatsKabel()
         {
-            if (K.IsStartPositieLeeg() == false)
+            K.verschuifLijnen();
+            Lijn verwijderdeLijn = K.VerwijderLijnVanKabel();
+            if (verwijderdeLijn != null)
             {
-                if (K.VerwijderLijnVanKabel() == null)
-                {
-                }
-                else
-                {
-                    lv.LijnToevoegenAanRij(new Lijn());
-                }
-                K.verschuifLijnen();
+                lv.LijnToevoegenAanRij(new Lijn());
             }
-                
+
+
+
         }
-        
+
         public Kabel ReturnKabel()
         {
             return K;

@@ -24,6 +24,12 @@ namespace Waterskibaan
             KledingKleur = Color.White;
             Zwemvest = new Zwemvest();
             Skies = new Skies();
+            int red = rand.Next(0, 256);
+            int green = rand.Next(0, 256);
+            int blue = rand.Next(0, 256);
+            Color randomColor = Color.FromArgb(255, (byte)red, (byte)green, (byte)blue);
+            KledingKleur = randomColor;
         }
     }
+
 }
