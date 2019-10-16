@@ -11,18 +11,37 @@ namespace Waterskibaan
         public string Naam { get; set; }
         Random random = new Random();
         int randomInt;
+        public Move(string name)
+        {          
+            if (name == "Jump")
+            {
+                Naam = "Jump";
+            }
+            else if (name == "Met een hand")
+            {
+                Naam = "Met een hand";
+            }
+            else if (name == "Omdraaien")
+            {
+                Naam = "Omdraaien";
+            }
+            else if (name == "Op een been")
+            {
+                Naam = "Op een been";
+            }
+        }
         public int moves()
         {
-            randomInt = random.Next(4);
-            if (randomInt == 0)
+
+            if (Naam == "Jump")
             {
                 return Jump();
             }
-            else if (randomInt == 1)
+            else if (Naam == "Met een hand")
             {
                 return MetEenHand();
             }
-            else if (randomInt == 2)
+            else if (Naam == "Omdraaien")
             {
                 return Omdraaien();
             }
@@ -33,7 +52,6 @@ namespace Waterskibaan
         }
         public int Jump()
         {
-            Naam = "Jump";
             if (voerUit() == 1)
             {
                 return 200;
@@ -44,7 +62,6 @@ namespace Waterskibaan
         }
         public int MetEenHand()
         {
-            Naam = "Met een hand";
             if(voerUit() == 1)
             {
                 return 120;
@@ -55,7 +72,6 @@ namespace Waterskibaan
         }
         public int Omdraaien()
         {
-            Naam = "Omdraaien";
             if(voerUit() == 1)
             {
                 return 250;
@@ -66,7 +82,6 @@ namespace Waterskibaan
         }
         public int OpEenBeen()
         {
-            Naam = "Op een been";
             if(voerUit() == 1)
             {
                 return 275;

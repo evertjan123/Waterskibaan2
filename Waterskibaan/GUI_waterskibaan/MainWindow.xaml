@@ -22,11 +22,11 @@
         <Label Content="Aantal bezoekers rode kleren" HorizontalAlignment="Left" Margin="27,222,0,0" VerticalAlignment="Top"/>
         <Label Content="Totaal aantal rondjes" HorizontalAlignment="Left" Margin="41,253,0,0" VerticalAlignment="Top" Width="138"/>
         <Label Content="Lijst unieke moves" HorizontalAlignment="Left" Margin="977,63,0,0" VerticalAlignment="Top"/>
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="977,94,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="ClijstMoves" HorizontalAlignment="Left" Height="123" Margin="977,94,0,0" VerticalAlignment="Top" Width="137"/>
         <Label Content="Top 10 lichtste kleren" HorizontalAlignment="Left" Margin="977,222,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LtotaalAantalBezoekers" Content="0" HorizontalAlignment="Left" Margin="207,160,0,0" VerticalAlignment="Top" Width="28"/>
         <Label x:Name="LtotaalAantalRondjes" Content="0" HorizontalAlignment="Left" Margin="207,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.425,-0.895" Width="28"/>
-        <Label x:Name="LhoogsteScore" Content="0" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.671,1.012"/>
+        <Label x:Name="LhoogsteScore" Content="0" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="53" RenderTransformOrigin="0.671,1.012"/>
         <Label x:Name="LaantalRodeKleuren" Content="0" HorizontalAlignment="Left" Margin="207,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.225,-0.348" Width="28"/>
         <Canvas x:Name="ClichtsteKleuren" HorizontalAlignment="Left" Height="100" Margin="977,253,0,0" VerticalAlignment="Top" Width="100"/>
 

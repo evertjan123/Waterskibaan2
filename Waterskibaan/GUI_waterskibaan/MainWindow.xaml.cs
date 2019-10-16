@@ -32,18 +32,74 @@ namespace GUI_waterskibaan
         {
             InitializeComponent();
             Game.Initialize();
-
-
-
-
-
         }
 
         private void StartSpel(object sender, RoutedEventArgs e)
         {
-            SetTimer();
+            if (timer == null)
+            {
+                SetTimer();
+            }
         }
+        
+        public void UpdateTotaalAantalSporters()
+        {
+            LtotaalAantalBezoekers.Content = (from sporter
+                                              in Game.logger.sporterLog
+                                              select sporter).Count();
+        }
+        public void UpdateHoogsteScore()
+        {
+            var hoogsteScore = (from sporter
+                    in Game.logger.sporterLog
+                                orderby sporter.BehaaldePunten descending
+                                select sporter.BehaaldePunten).Take(1);
+            LhoogsteScore.Content = hoogsteScore.Sum();
+        }
+        public void UpdateRodeTruienCounter()
+        {
+            var kleurSporter = (from sporter
+                    in Game.logger.sporterLog
+                                select sporter.KledingKleur);
+            int rodeKleurenCount = 0;
+            foreach (System.Drawing.Color kleur in kleurSporter)
+            {
+                if (ColorsAreClose(kleur))
+                {
+                    rodeKleurenCount++;
+                }
+            }
+            LaantalRodeKleuren.Content = rodeKleurenCount;
+        }
+        public void UpdateTotaalAantalRondes()
+        {
+            var aantalRondes = (from sporter
+                   in Game.logger.sporterLog
+                                let ronde = sporter.AantalRondenNogTeGaan + 1
+                                select ronde);
+            int rondeCount = 0;
+            rondeCount = aantalRondes.Sum();
+            LtotaalAantalRondjes.Content = rondeCount;
+        }
+        public void TekenMoveLijst()
+        {
+            ClijstMoves.Items.Clear();
+            LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
+            _lijnen = Game.kabel._lijnen;
+            foreach(Lijn lijn in _lijnen)
+            {
+                var moves = from sporter
+                            in lijn.Sporter.Moves
+                            select sporter.Naam;
+                if(moves.Count() > 0) {
+                    foreach (string move in moves)
+                    {
+                        ClijstMoves.Items.Add(move);
+                    }
+                }
+            }
 
+        }
         public void TekenLichtsteKleuren()
         {
             int counter = 0;
@@ -67,7 +123,6 @@ namespace GUI_waterskibaan
                 cirkel.Height = 20;
                 Canvas.SetLeft(cirkel, 20 * counter);
                 Canvas.SetTop(cirkel, 0);
-
                 ClichtsteKleuren.Children.Add(cirkel);
             }
         }
@@ -116,21 +171,24 @@ namespace GUI_waterskibaan
             {
                 int x1 = lijn.PositieOpDeKabel * 65;
                 int x2 = x1 + 35;
-                maakLijn(x1, x2, lijn);
-                maakSporter(x1, lijn);
+                MaakLijn(x1, x2, lijn);
+                MaakSporter(x1, lijn);
             }
         }
-        public void maakLijn(int x1, int x2, Lijn lijn)
+        public void MaakLijn(int x1, int x2, Lijn lijn)
         {
             Line line = new Line();
             Label textLijn = new Label();
             Label textMove = new Label();
+            Label textPunten = new Label();
             SolidColorBrush brush = new SolidColorBrush();
             brush.Color = Colors.Black;
             textLijn.Content = lijn.PositieOpDeKabel;
+            textPunten.Content = lijn.Sporter.BehaaldePunten;
             if (lijn.Sporter.HuidigeMove != null)
             {
                 textMove.Content = lijn.Sporter.HuidigeMove.Naam;
+                 
             }
             else
             {
@@ -139,7 +197,9 @@ namespace GUI_waterskibaan
             Canvas.SetLeft(textLijn, x1);
             Canvas.SetTop(textLijn, 55);
             Canvas.SetLeft(textMove, x1);
-            Canvas.SetTop(textMove, 10);
+            Canvas.SetTop(textMove, 120);
+            Canvas.SetLeft(textPunten, x1);
+            Canvas.SetTop(textPunten, 140);
             line.X1 = x1;
             line.Y1 = 50;
             line.X2 = x2;
@@ -149,8 +209,9 @@ namespace GUI_waterskibaan
             MainGame.Children.Add(line);
             MainGame.Children.Add(textLijn);
             MainGame.Children.Add(textMove);
+            MainGame.Children.Add(textPunten);
         }
-        public void maakSporter(int x1, Lijn lijn)
+        public void MaakSporter(int x1, Lijn lijn)
         {
             Ellipse cirkel = new Ellipse();
             System.Drawing.Color oldColor = lijn.Sporter.KledingKleur;
@@ -168,8 +229,8 @@ namespace GUI_waterskibaan
             // Create a timer with a two second interval.
             timer = new System.Timers.Timer(1000);
             // Hook up the Elapsed event for the timer. 
-            timer.Elapsed += updateScherm;
-            timer.Elapsed += spelRonde;
+            timer.Elapsed += UpdateScherm;
+            timer.Elapsed += SpelRonde;
             timer.AutoReset = true;
             timer.Enabled = true;
         }
@@ -180,7 +241,7 @@ namespace GUI_waterskibaan
                 b = (int)a.B - 50;
             return (r * r + g * g + b * b) <= 100 * 100;
         }
-        public void updateScherm(object source, ElapsedEventArgs args)
+        public void UpdateScherm(object source, ElapsedEventArgs args)
         {
 
             this.Dispatcher.Invoke(() =>
@@ -194,39 +255,12 @@ namespace GUI_waterskibaan
                 tekenWachtrij(Game.instructieGroep.ReturnWachtrij(), "instructiegroep");
                 tekenWachtrij(Game.WachtrijStarten.ReturnWachtrij(), "starten wachtrij");
                 LvoorraadLijnen.Content = Game.w.lv.GetAantalLijnen();
-                LtotaalAantalBezoekers.Content = (from sporter
-                                     in Game.logger.sporterLog
-                                                  select sporter).Count();
-                var aantalRondes = (from sporter
-                                   in Game.logger.sporterLog
-                                    select sporter.AantalRondenNogTeGaan);
-                int rondeCount = 0;
-                foreach (int ronde in aantalRondes)
-                {
-                    rondeCount += ronde + 1;
-                }
-                LtotaalAantalRondjes.Content = rondeCount;
-                var hoogsteScore =(from sporter
-                                   in Game.logger.sporterLog
-                                    orderby sporter.BehaaldePunten descending
-                                    select sporter.BehaaldePunten).Take(1);
-                foreach (int score in hoogsteScore)
-                {
-                    LhoogsteScore.Content = score;
-                }
-                var kleurSporter = (from sporter
-                                    in Game.logger.sporterLog
-                                    select sporter.KledingKleur);
-                int rodeKleurenCount = 0;
-                foreach (System.Drawing.Color kleur in kleurSporter)
-                {
-                    if (ColorsAreClose(kleur))
-                    {
-                        rodeKleurenCount++;
-                    }
-                }
-                LaantalRodeKleuren.Content = rodeKleurenCount;
+                UpdateHoogsteScore();
+                UpdateRodeTruienCounter();
+                UpdateTotaalAantalRondes();
+                UpdateTotaalAantalSporters();
                 TekenLichtsteKleuren();
+                TekenMoveLijst();
 
 
 
@@ -234,7 +268,7 @@ namespace GUI_waterskibaan
             });
 
         }
-        public void spelRonde(object source, ElapsedEventArgs args)
+        public void SpelRonde(object source, ElapsedEventArgs args)
         {
             Game.rondeSpel();
 

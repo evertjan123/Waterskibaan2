@@ -39,9 +39,12 @@ namespace Waterskibaan
             //opdracht 11
             Random rand = new Random();
             Sporter s = new Sporter();
-            s.HuidigeMove = (Move)s.Moves.ElementAt(0);
-            s.HuidigeMove.moves();
-            Console.WriteLine(s.HuidigeMove.Naam);
+            foreach (var item in s.Moves)
+            {
+                item.moves();
+               Console.WriteLine(item.Naam);
+                Console.WriteLine(s.BehaaldePunten);
+            }
         }
             
     }
