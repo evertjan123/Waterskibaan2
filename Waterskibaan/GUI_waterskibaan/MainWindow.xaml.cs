@@ -225,10 +225,8 @@ namespace GUI_waterskibaan
             MainGame.Children.Add(cirkel);
         }
         private void SetTimer()
-        {
-            // Create a timer with a two second interval.
+        { 
             timer = new System.Timers.Timer(1000);
-            // Hook up the Elapsed event for the timer. 
             timer.Elapsed += UpdateScherm;
             timer.Elapsed += SpelRonde;
             timer.AutoReset = true;
@@ -239,7 +237,7 @@ namespace GUI_waterskibaan
             int r = (int)a.R - 240,
                 g = (int)a.G - 50,
                 b = (int)a.B - 50;
-            return (r * r + g * g + b * b) <= 100 * 100;
+            return (r * r + g * g + b * b) <= 80 * 80;
         }
         public void UpdateScherm(object source, ElapsedEventArgs args)
         {
